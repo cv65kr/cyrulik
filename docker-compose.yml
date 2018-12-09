@@ -20,3 +20,24 @@ services:
     image: spotify/cassandra
     ports:
       - "${CONFIG_DATABASE_PORT_ACCOUNT}:9042"
+
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    env_file:
+      - .env
+    container_name: zookeeper
+    restart: always
+    ports:
+      - "${CONFIG_SERVICE_PORT_ZOOKEEPER}:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    env_file:
+      - .env
+    container_name: kafka
+    restart: always
+    depends_on:
+      - zookeeper
+    ports:
+      - "${CONFIG_SERVICE_PORT_KAFKA}:9092"

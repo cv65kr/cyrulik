@@ -10,3 +10,7 @@ spring:
       schema-action: create_if_not_exists
       cluster-name: database_account
       create-keyspace: true
+  kafka:
+    consumer:
+      topic:
+        account: ACCOUNT

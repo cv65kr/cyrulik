@@ -18,3 +18,8 @@ eureka:
     leaseRenewalIntervalInSeconds: 10
     leaseExpirationDurationInSeconds: 60
     preferIpAddress: true
+
+
+spring:
+  producer:
+    bootstrap-servers: kafka:9092
