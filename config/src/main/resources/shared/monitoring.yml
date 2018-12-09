@@ -1,0 +1,2 @@
+server:
+  port: ${CONFIG_SERVICE_PORT_MONITORING}

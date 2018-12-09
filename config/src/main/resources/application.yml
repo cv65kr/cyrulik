@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+  profiles:
+    active: native
+  security:
+    user:
+      password: ${CONFIG_SERVICE_PASSWORD}
+
+server:
+  port: ${CONFIG_SERVICE_PORT_CONFIG}
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${CONFIG_SERVICE_HOST_REGISTRY}:${CONFIG_SERVICE_PORT_REGISTRY}/eureka/
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    leaseExpirationDurationInSeconds: 60
+    preferIpAddress: true
