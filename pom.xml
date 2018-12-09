@@ -50,6 +50,7 @@
         <module>registry</module>
         <module>monitoring</module>
         <module>turbine</module>
+        <module>account</module>
     </modules>
 
 </project>

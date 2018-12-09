@@ -1,0 +1,12 @@
+server:
+  port: ${CONFIG_SERVICE_PORT_ACCOUNT}
+
+spring:
+  data:
+    cassandra:
+      keyspace-name: account
+      contact-points: ${CONFIG_DATABASE_HOST_ACCOUNT}
+      port: ${CONFIG_DATABASE_PORT_ACCOUNT}
+      schema-action: create_if_not_exists
+      cluster-name: database_account
+      create-keyspace: true

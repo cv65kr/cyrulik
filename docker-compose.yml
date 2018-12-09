@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+
+  zipkin-service:
+    container_name: zipkin-service
+    env_file:
+      - .env
+    image: openzipkin/zipkin:2.10.1
+    environment:
+      STORAGE_TYPE: mem
+    restart: always
+    ports:
+      - "${CONFIG_SERVICE_PORT_ZIPKIN}:9411"
+
+
+  cassandra-account:
+    container_name: cassandra-account
+    env_file:
+      - .env
+    image: spotify/cassandra
+    ports:
+      - "${CONFIG_DATABASE_PORT_ACCOUNT}:9042"
