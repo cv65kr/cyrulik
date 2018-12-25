@@ -1,5 +1,7 @@
 server:
   port: ${CONFIG_SERVICE_PORT_ACCOUNT}
+  servlet:
+    context-path: /account
 
 spring:
   data:
@@ -14,3 +16,11 @@ spring:
     consumer:
       topic:
         account: ACCOUNT
+  redis:
+    host: ${CONFIG_SERVICE_HOST_REDIS}
+    port: ${CONFIG_SERVICE_PORT_REDIS}
+
+security:
+  oauth2:
+    client:
+      clientId: account-service

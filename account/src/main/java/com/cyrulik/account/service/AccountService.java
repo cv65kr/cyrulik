@@ -10,6 +10,8 @@ public interface AccountService {
 
     Account save(Account user);
 
+    Account update(String username, Account user) throws UserNotFoundException;
+
     Account update(UUID id, Account user) throws UserNotFoundException;
 
     Account findOne(UUID id) throws UserNotFoundException;

@@ -1,4 +1,9 @@
 version: '3.3'
+
+volumes:
+  redisdata:
+    driver: local
+
 services:
 
   zipkin-service:
@@ -32,7 +37,7 @@ services:
       - "${CONFIG_SERVICE_PORT_ZOOKEEPER}:2181"
 
   kafka:
-    image: wurstmeister/kafka
+    image: wurstmeister/kafka:1.1.0
     env_file:
       - .env
     container_name: kafka
@@ -41,3 +46,16 @@ services:
       - zookeeper
     ports:
       - "${CONFIG_SERVICE_PORT_KAFKA}:9092"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  redis:
+    image: redis:4-alpine
+    env_file:
+      - .env
+    container_name: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "${CONFIG_SERVICE_PORT_REDIS}:6379"
+    volumes:
+      - redisdata:/data

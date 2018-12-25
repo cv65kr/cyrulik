@@ -21,5 +21,12 @@ eureka:
 
 
 spring:
-  producer:
-    bootstrap-servers: kafka:9092
+  kafka:
+    producer:
+      bootstrap-servers: ${CONFIG_SERVICE_HOST_KAFKA}:${CONFIG_SERVICE_PORT_KAFKA}
+
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: http://${CONFIG_SERVICE_HOST_ACCOUNT}:${CONFIG_SERVICE_PORT_ACCOUNT}/accounts/current

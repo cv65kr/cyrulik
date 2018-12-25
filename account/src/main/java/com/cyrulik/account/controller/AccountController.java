@@ -3,13 +3,13 @@ package com.cyrulik.account.controller;
 import com.cyrulik.account.entity.Account;
 import com.cyrulik.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.UUID;
+import javax.validation.Valid;
+import java.security.Principal;
 
 @RestController
-@RequestMapping("/account")
 public class AccountController {
 
     private final AccountService accountService;
@@ -19,29 +19,19 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping(value = "/")
-    public List<Account> getAll() {
-        return accountService.findAll();
-    }
-
-    @GetMapping(value = "/{id}")
-    public Account getOne(@PathVariable UUID id) {
-        return accountService.findOne(id);
-    }
-
-    @PostMapping(value = "/")
-    public Account create(@RequestBody Account user) {
+    @PostMapping(value = "/", produces = "application/json")
+    public Account create(@Valid @RequestBody Account user) {
         return accountService.save(user);
     }
 
-    @PutMapping(value = "/{id}")
-    public Account update(@PathVariable UUID id, @RequestBody Account user) {
-        return accountService.update(id, user);
+    @Secured({"ROLE_CLIENT"})
+    @RequestMapping(path = "/current", method = RequestMethod.PUT)
+    public void saveCurrentAccount(Principal principal, @Valid @RequestBody Account account) {
+        accountService.update(principal.getName(), account);
     }
 
-    @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable UUID id) {
-        accountService.delete(id);
+    @GetMapping(path = "/current", produces = "application/json" )
+    public Principal userDetails(Principal principal) {
+        return principal;
     }
-
 }
