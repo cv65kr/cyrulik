@@ -1,8 +1,12 @@
-version: '3.3'
+version: '3.5'
 
 volumes:
   redisdata:
     driver: local
+
+networks:
+  cyrulik:
+    driver: bridge
 
 services:
 
@@ -16,6 +20,13 @@ services:
     restart: always
     ports:
       - "${CONFIG_SERVICE_PORT_ZIPKIN}:9411"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9411/health"]
+      interval: 60s
+      timeout: 10s
+      retries: 10
+    networks:
+      - cyrulik
 
 
   cassandra-account:
@@ -25,6 +36,13 @@ services:
     image: spotify/cassandra
     ports:
       - "${CONFIG_DATABASE_PORT_ACCOUNT}:9042"
+    healthcheck:
+      test: ["CMD", "cqlsh", "--execute", "show version;quit"]
+      interval: 60s
+      timeout: 10s
+      retries: 5
+    networks:
+      - cyrulik
 
 
   zookeeper:
@@ -33,21 +51,34 @@ services:
       - .env
     container_name: zookeeper
     restart: always
+    healthcheck:
+      test: [ "CMD-SHELL", "echo ruok | nc localhost 2181 | grep imok" ]
+      interval: 60s
+      timeout: 10s
+      retries: 5
     ports:
       - "${CONFIG_SERVICE_PORT_ZOOKEEPER}:2181"
+    networks:
+      - cyrulik
+
 
   kafka:
-    image: wurstmeister/kafka:1.1.0
+    image: confluentinc/cp-kafka:5.0.0
+    container_name: kafka
+    hostname: kafka
+    restart: unless-stopped
     env_file:
       - .env
-    container_name: kafka
-    restart: always
     depends_on:
       - zookeeper
     ports:
       - "${CONFIG_SERVICE_PORT_KAFKA}:9092"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "9092" ]
+      start_period: 20s
+    networks:
+      - cyrulik
+
 
   redis:
     image: redis:4-alpine
@@ -59,3 +90,11 @@ services:
       - "${CONFIG_SERVICE_PORT_REDIS}:6379"
     volumes:
       - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 30
+    networks:
+      - cyrulik
+
