@@ -52,7 +52,7 @@ services:
     container_name: zookeeper
     restart: always
     healthcheck:
-      test: [ "CMD-SHELL", "echo ruok | nc localhost 2181 | grep imok" ]
+      test: ["CMD-SHELL", "echo ruok | nc localhost 2181 | grep imok"]
       interval: 60s
       timeout: 10s
       retries: 5
