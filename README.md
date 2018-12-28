@@ -8,6 +8,12 @@ Spring, Docker, Ribbon, Zuul, Turbine, Eureka, Zipkin, Kafka, Redis, Hystrix, Ca
 
 ## Infrastructure services
 
+I know diagram is really bad, but my skill in this matter is really low :)
+
+![ Infrastructure services](tools/docs/diagram.png)
+
+https://www.draw.io/
+
 ### Endpoints
 
 Eureka - http://127.0.0.1:8761/
