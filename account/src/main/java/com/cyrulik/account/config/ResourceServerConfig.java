@@ -25,7 +25,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private final TokenStore tokenStore;
 
     @Autowired
-    public ResourceServerConfig(DefaultTokenServices tokenServices, TokenStore tokenStore, @Value("${security.oauth2.client.clientId}") String resourceId) {
+    public ResourceServerConfig(DefaultTokenServices tokenServices, TokenStore tokenStore, @Value("${security.oauth2.client.client-id}") String resourceId) {
         this.tokenServices = tokenServices;
         this.tokenStore = tokenStore;
         this.resourceId = resourceId;

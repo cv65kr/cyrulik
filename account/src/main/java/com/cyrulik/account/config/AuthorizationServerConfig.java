@@ -35,7 +35,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
             AuthenticationManager authenticationManager,
             Environment environment,
             RedisConnectionFactory redisConnectionFactory,
-            @Value("${security.oauth2.client.clientId}") String resourceId
+            @Value("${security.oauth2.client.client-id}") String resourceId
     ) {
         this.authenticationManager = authenticationManager;
         this.environment = environment;
@@ -70,20 +70,26 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .and()
 
                 .withClient("register-service")
-                .secret(getSecret("AUTH_SERVICE_PASSWORD"))
+                .scopes("ui")
+                .secret(getSecret("AUTH_REGISTER_SERVICE_PASSWORD"))
                 .authorizedGrantTypes("client_credentials")
                 .authorities("ROLE_REGISTER")
-                .scopes("read")
                 .resourceIds(resourceId)
 
                 .and()
-                .withClient("authorization-service")
-                .secret(getSecret("AUTH_SERVICE_PASSWORD"))
-                .authorizedGrantTypes("authorization_code", "password", "refresh_token")
+                .withClient("account-service")
+                .scopes("server")
+                .secret(getSecret("AUTH_ACCOUNT_SERVICE_PASSWORD"))
+                .authorizedGrantTypes("client_credentials", "refresh_token")
                 .authorities("ROLE_SERVICE")
-                .scopes("read", "write", "server")
-                .accessTokenValiditySeconds(30)
-                .refreshTokenValiditySeconds(100)
+
+                .and()
+                .withClient("subscription-service")
+                .scopes("server")
+                .secret(getSecret("AUTH_SUBSCRIPTION_SERVICE_PASSWORD"))
+                .authorizedGrantTypes("client_credentials", "refresh_token", "password")
+                .authorities("ROLE_SERVICE")
+
         ;
     }
 

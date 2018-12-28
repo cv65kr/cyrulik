@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("/admin")
-@RestController()
-@Secured({"ROLE_ADMIN"})
+@RestController
+@Secured({"ROLE_ADMIN", "ROLE_SERVICE"})
 public class AccountAdminController {
 
     private final AccountService accountService;
@@ -30,6 +30,11 @@ public class AccountAdminController {
     @GetMapping(value = "/{id}", produces = "application/json")
     public Account getOne(@PathVariable UUID id) {
         return accountService.findOne(id);
+    }
+
+    @GetMapping(value = "/{username}/username", produces = "application/json")
+    public Account getByUsername(@PathVariable String username) {
+        return accountService.loadUserByUsername(username);
     }
     
     @PostMapping(value = "/", produces = "application/json")

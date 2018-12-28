@@ -45,6 +45,22 @@ services:
       - cyrulik
 
 
+  cassandra-subscription:
+    container_name: cassandra-subscription
+    env_file:
+      - .env
+    image: spotify/cassandra
+    ports:
+      - "${CONFIG_DATABASE_PORT_SUBSCRIPTION}:9042"
+    healthcheck:
+      test: ["CMD", "cqlsh", "--execute", "show version;quit"]
+      interval: 60s
+      timeout: 10s
+      retries: 5
+    networks:
+      - cyrulik
+
+
   zookeeper:
     image: wurstmeister/zookeeper
     env_file:

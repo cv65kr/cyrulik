@@ -19,13 +19,19 @@ eureka:
     leaseExpirationDurationInSeconds: 60
     preferIpAddress: true
 
+feign:
+  hystrix:
+    enabled: false
 
 spring:
   kafka:
     bootstrap-servers: ${CONFIG_SERVICE_HOST_KAFKA}:${CONFIG_SERVICE_PORT_KAFKA}
-
+  profiles:
+    active: ${APP_ENV}
 
 security:
   oauth2:
     resource:
-      userInfoUri: http://${CONFIG_SERVICE_HOST_ACCOUNT}:${CONFIG_SERVICE_PORT_ACCOUNT}/accounts/current
+      userInfoUri: http://${CONFIG_SERVICE_HOST_ACCOUNT}:${CONFIG_SERVICE_PORT_ACCOUNT}/account/current
+    client:
+      access-token-uri: http://${CONFIG_SERVICE_HOST_ACCOUNT}:${CONFIG_SERVICE_PORT_ACCOUNT}/account/oauth/token

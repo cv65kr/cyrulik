@@ -1,0 +1,29 @@
+server:
+  port: ${CONFIG_SERVICE_PORT_SUBSCRIPTION}
+  servlet:
+    context-path: /subscription
+
+spring:
+  data:
+    cassandra:
+      keyspace-name: subscription
+      contact-points: ${CONFIG_DATABASE_HOST_SUBSCRIPTION}
+      port: ${CONFIG_DATABASE_PORT_SUBSCRIPTION}
+      schema-action: create_if_not_exists
+      cluster-name: database_subscription
+      create-keyspace: true
+  kafka:
+    consumer:
+      topic:
+        subscription: SUBSCRIPTION
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+
+security:
+  oauth2:
+    client:
+      client-id: subscription-service
+      grant-type: client_credentials
+      client-secret: ${AUTH_SUBSCRIPTION_SERVICE_PASSWORD}
+      scope: server

@@ -2,6 +2,7 @@ package com.cyrulik.account.service;
 
 import com.cyrulik.account.entity.Account;
 import com.cyrulik.account.exception.UserNotFoundException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,5 +20,6 @@ public interface AccountService {
     List<Account> findAll();
 
     void delete(UUID id) throws UserNotFoundException;
-    
+
+    Account loadUserByUsername(String username) throws UsernameNotFoundException;
 }

@@ -23,4 +23,7 @@ spring:
 security:
   oauth2:
     client:
-      clientId: account-service
+      client-id: account-service
+      grant-type: client_credentials
+      client-secret: ${AUTH_ACCOUNT_SERVICE_PASSWORD}
+      scope: server

@@ -1,0 +1,27 @@
+server:
+  port: ${CONFIG_SERVICE_PORT_GATEWAY}
+
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    auth-service:
+      path: /uaa/**
+      url: http://${CONFIG_SERVICE_HOST_ACCOUNT}:${CONFIG_SERVICE_PORT_ACCOUNT}
+      stripPrefix: false
+      sensitiveHeaders:
+
+    account-service:
+      path: /account/**
+      serviceId: account-service
+      stripPrefix: false
+      sensitiveHeaders:
+
+    statistics-service:
+      path: /subscription/**
+      serviceId: subscription-service
+      stripPrefix: false
+      sensitiveHeaders:

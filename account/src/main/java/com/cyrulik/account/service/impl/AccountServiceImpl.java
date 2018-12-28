@@ -51,6 +51,7 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
 
         LOGGER.info("Save account: {}", account);
         account.grantAuthority("ROLE_CLIENT");
+        account.grantAuthority("ROLE_ADMIN");
         Account saved = accountRepository.save(account);
         kafkaProducerService.send(topic, SAVE, jsonMapper.writeValue(saved));
         return saved;
@@ -108,7 +109,7 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public Account loadUserByUsername(String username) throws UsernameNotFoundException {
         LOGGER.info("Find account, id: {}", username);
         return accountRepository.findByUsername(username);
     }

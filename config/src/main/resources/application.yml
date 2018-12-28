@@ -7,7 +7,7 @@ spring:
         native:
           search-locations: classpath:/shared
   profiles:
-    active: native
+    active: ${APP_ENV}
   security:
     user:
       password: ${CONFIG_SERVICE_PASSWORD}
