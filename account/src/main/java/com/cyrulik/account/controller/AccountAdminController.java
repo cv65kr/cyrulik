@@ -42,6 +42,11 @@ public class AccountAdminController {
         return accountService.save(user);
     }
 
+    @PutMapping(value = "/{id}/grant-role", produces = "application/json")
+    public Account grantRole(@PathVariable UUID id, @RequestBody String role) {
+        return accountService.grantRole(id, role);
+    }
+
     @PutMapping(value = "/{id}", produces = "application/json")
     public Account update(@PathVariable UUID id, @Valid @RequestBody Account user) {
         return accountService.update(id, user);

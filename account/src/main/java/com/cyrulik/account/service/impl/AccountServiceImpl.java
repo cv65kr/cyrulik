@@ -44,6 +44,16 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
     }
 
     @Override
+    public Account grantRole(UUID id, String role) {
+        Account account = findOne(id);
+        Assert.notNull(account, "can't find account with name " + id.toString());
+
+        account.grantAuthority(role);
+
+        return accountRepository.save(account);
+    }
+
+    @Override
     public Account save(Account account) {
 
         Account existing = accountRepository.findByUsername(account.getUsername());
@@ -51,7 +61,6 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
 
         LOGGER.info("Save account: {}", account);
         account.grantAuthority("ROLE_CLIENT");
-        account.grantAuthority("ROLE_ADMIN");
         Account saved = accountRepository.save(account);
         kafkaProducerService.send(topic, SAVE, jsonMapper.writeValue(saved));
         return saved;
