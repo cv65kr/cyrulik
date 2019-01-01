@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -34,9 +33,11 @@ public class AccountServiceImpl implements AccountService, UserDetailsService {
     private final String topic;
 
     @Autowired
-    public AccountServiceImpl(AccountRepository accountRepository, KafkaProducerService kafkaProducerService,
-                           JsonMapperWrapper jsonMapper,
-                           @Value("${spring.kafka.consumer.topic.account}") String topic) {
+    public AccountServiceImpl(
+            AccountRepository accountRepository, KafkaProducerService kafkaProducerService,
+            JsonMapperWrapper jsonMapper,
+            @Value("${spring.kafka.consumer.topic.account}") String topic
+    ) {
         this.accountRepository = accountRepository;
         this.kafkaProducerService = kafkaProducerService;
         this.jsonMapper = jsonMapper;
