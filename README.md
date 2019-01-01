@@ -4,7 +4,7 @@ Skeleton for modern SASS (Software as a Service) aplication. Based on Spring, us
 
 ## Stack
 
-Spring, Docker, Ribbon, Zuul, Turbine, Eureka, Zipkin, Kafka, Redis, Hystrix, Cassandra, Zookeeper,
+Spring, Docker, Ribbon, Zuul, Turbine, Eureka, Zipkin, Kafka, Redis, Hystrix, Cassandra, Zookeeper.
 
 ## Infrastructure services
 
