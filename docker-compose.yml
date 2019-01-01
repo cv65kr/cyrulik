@@ -115,3 +115,79 @@ services:
     networks:
       - cyrulik
 
+
+  account-service:
+    image: cyrulik/account
+    container_name: account-service
+    ports:
+      - "${CONFIG_SERVICE_PORT_ACCOUNT}:5000"
+    env_file:
+      - .env
+    networks:
+      - cyrulik
+
+
+  config-service:
+    image: cyrulik/config
+    container_name: config-service
+    ports:
+      - "${CONFIG_SERVICE_PORT_CONFIG}:8880"
+    env_file:
+      - .env
+    networks:
+      - cyrulik
+
+
+  gateway-service:
+    image: cyrulik/gateway
+    container_name: gateway-service
+    ports:
+      - "${CONFIG_SERVICE_PORT_GATEWAY}:5002"
+    env_file:
+      - .env
+    networks:
+      - cyrulik
+
+
+  monitoring-service:
+    image: cyrulik/monitoring
+    container_name: monitoring-service
+    ports:
+      - "${CONFIG_SERVICE_PORT_MONITORING}:8882"
+    env_file:
+      - .env
+    networks:
+      - cyrulik
+
+
+  registry-service:
+    image: cyrulik/registry
+    container_name: registry-service
+    ports:
+      - "${CONFIG_SERVICE_PORT_REGISTRY}:8761"
+    env_file:
+      - .env
+    networks:
+      - cyrulik
+
+
+  subscription-service:
+    image: cyrulik/subscription
+    container_name: subscription-service
+    ports:
+      - "${CONFIG_SERVICE_PORT_SUBSCRIPTION}:5001"
+    env_file:
+      - .env
+    networks:
+      - cyrulik
+
+
+  turbine-service:
+    image: cyrulik/turbine
+    container_name: turbine-service
+    ports:
+      - "${CONFIG_SERVICE_PORT_TURBINE}:8881"
+    env_file:
+      - .env
+    networks:
+      - cyrulik

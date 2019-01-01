@@ -34,14 +34,11 @@ First of all prepare all necessary jar files.
 mvn clean package -DskipTests
 ```
 
-Run compontents:
+Run components:
 
 ```
 docker-compose up -d --force
 ```
-
-For now I run app by Intellij IDEA `run dashboard`. In the near future I will try add first point from TODO section.
-
 
 ### Tools
 
@@ -49,7 +46,7 @@ In folder tools, You will find useful tools to testing app, or her deployment.
 
 ## Todo (Random order)
 
-- [ ] Docker for services - https://github.com/spotify/docker-maven-plugin
+- [x] Docker for services - https://github.com/spotify/docker-maven-plugin
 - [ ] Frontend sample app with admin control panel - https://bulma.io/
 - [ ] Online demo - https://kubernetes.io/
 - [ ] TDD
