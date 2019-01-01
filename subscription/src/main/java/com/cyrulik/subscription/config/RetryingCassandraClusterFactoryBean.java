@@ -6,10 +6,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.cassandra.config.CassandraClusterFactoryBean;
 
+/**
+ * https://lankydanblog.com/2018/09/08/containerising-a-spring-data-cassandra-application/
+ */
 public class RetryingCassandraClusterFactoryBean extends CassandraClusterFactoryBean {
 
-    private static final Logger LOG =
-            LoggerFactory.getLogger(RetryingCassandraClusterFactoryBean.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(RetryingCassandraClusterFactoryBean.class);
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -20,8 +22,7 @@ public class RetryingCassandraClusterFactoryBean extends CassandraClusterFactory
         try {
             super.afterPropertiesSet();
         } catch (TransportException | IllegalArgumentException | NoHostAvailableException e) {
-            LOG.warn(e.getMessage());
-            LOG.warn("Retrying connection in 10 seconds");
+            LOGGER.warn("Retrying connection in 10 seconds {}", e.getMessage());
             sleep();
             connect();
         }

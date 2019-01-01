@@ -13,7 +13,7 @@ services:
   zipkin-service:
     container_name: zipkin-service
     env_file:
-      - .env
+      - .docker.env
     image: openzipkin/zipkin:2.10.1
     environment:
       STORAGE_TYPE: mem
@@ -32,7 +32,7 @@ services:
   cassandra-account:
     container_name: cassandra-account
     env_file:
-      - .env
+      - .docker.env
     image: spotify/cassandra
     ports:
       - "${CONFIG_DATABASE_PORT_ACCOUNT}:9042"
@@ -48,7 +48,7 @@ services:
   cassandra-subscription:
     container_name: cassandra-subscription
     env_file:
-      - .env
+      - .docker.env
     image: spotify/cassandra
     ports:
       - "${CONFIG_DATABASE_PORT_SUBSCRIPTION}:9042"
@@ -64,7 +64,7 @@ services:
   zookeeper:
     image: wurstmeister/zookeeper
     env_file:
-      - .env
+      - .docker.env
     container_name: zookeeper
     restart: always
     healthcheck:
@@ -83,7 +83,7 @@ services:
     container_name: kafka
     hostname: kafka
     env_file:
-      - .env
+      - .docker.env
     ports:
       - "${CONFIG_SERVICE_PORT_KAFKA}:9092/tcp"
     depends_on:
@@ -100,7 +100,7 @@ services:
   redis:
     image: redis:4-alpine
     env_file:
-      - .env
+      - .docker.env
     container_name: redis
     command: ["redis-server", "--appendonly", "yes"]
     ports:
@@ -122,7 +122,7 @@ services:
     ports:
       - "${CONFIG_SERVICE_PORT_ACCOUNT}:5000"
     env_file:
-      - .env
+      - .docker.env
     networks:
       - cyrulik
 
@@ -133,7 +133,7 @@ services:
     ports:
       - "${CONFIG_SERVICE_PORT_CONFIG}:8880"
     env_file:
-      - .env
+      - .docker.env
     networks:
       - cyrulik
 
@@ -144,10 +144,9 @@ services:
     ports:
       - "${CONFIG_SERVICE_PORT_GATEWAY}:5002"
     env_file:
-      - .env
+      - .docker.env
     networks:
       - cyrulik
-
 
   monitoring-service:
     image: cyrulik/monitoring
@@ -155,7 +154,7 @@ services:
     ports:
       - "${CONFIG_SERVICE_PORT_MONITORING}:8882"
     env_file:
-      - .env
+      - .docker.env
     networks:
       - cyrulik
 
@@ -166,7 +165,7 @@ services:
     ports:
       - "${CONFIG_SERVICE_PORT_REGISTRY}:8761"
     env_file:
-      - .env
+      - .docker.env
     networks:
       - cyrulik
 
@@ -177,7 +176,7 @@ services:
     ports:
       - "${CONFIG_SERVICE_PORT_SUBSCRIPTION}:5001"
     env_file:
-      - .env
+      - .docker.env
     networks:
       - cyrulik
 
@@ -188,6 +187,6 @@ services:
     ports:
       - "${CONFIG_SERVICE_PORT_TURBINE}:8881"
     env_file:
-      - .env
+      - .docker.env
     networks:
       - cyrulik

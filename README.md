@@ -72,7 +72,7 @@ In folder tools, You will find useful tools to testing app, or her deployment.
 - [ ] TDD
 - [ ] CI
 - [ ] Kafka consumer (eg. notifications sent)
-- [ ] Register using social media
+- [ ] Register account using social media
 - [ ] Security things
 - [ ] Fallbacks
 - [ ] Consul instead of Eureka (??)
