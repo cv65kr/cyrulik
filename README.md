@@ -14,7 +14,7 @@ I know diagram is really bad, but my skill in this matter is really low :)
 
 https://www.draw.io/
 
-### Endpoints
+### Endpoints 
 
 Eureka - http://127.0.0.1:8761/
 
