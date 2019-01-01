@@ -40,6 +40,27 @@ Run components:
 docker-compose up -d --force
 ```
 
+#### Docker images
+
+https://github.com/spotify/docker-maven-plugin
+
+You can push images to Your docker registry, editing `settings.xml`.
+
+Example content:
+
+```xml
+<servers>
+  <server>
+    <id>docker-hub</id>
+    <username>foo</username>
+    <password>secret-password</password>
+    <configuration>
+      <email>foo@foo.bar</email>
+    </configuration>
+  </server>
+</servers>
+```
+
 ### Tools
 
 In folder tools, You will find useful tools to testing app, or her deployment.
