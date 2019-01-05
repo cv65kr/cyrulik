@@ -1,6 +1,6 @@
 # WIP Cyrulik
 
-Skeleton for modern SASS (Software as a Service) aplication. Based on Spring, uses microservices architecture.
+Skeleton for modern SASS (Software as a Service) application. Based on Spring, uses microservices architecture.
 
 ## Stack
 
