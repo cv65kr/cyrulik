@@ -1,0 +1,51 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    project: cyrulik
+    tier: infrastructure
+    app: zookeeper
+  name: zookeeper
+spec:
+  ports:
+    - name: client
+      port: 2181
+      protocol: TCP
+  selector:
+    project: cyrulik
+    tier: infrastructure
+    app: zookeeper
+status:
+  loadBalancer: {}
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    project: cyrulik
+    tier: infrastructure
+    app: zookeeper
+  name: zookeeper
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        project: cyrulik
+        tier: infrastructure
+        app: zookeeper
+    spec:
+      containers:
+        - image: wurstmeister/zookeeper
+          name: zookeeper
+          ports:
+            - containerPort: 2181
+          resources: {}
+          envFrom:
+            - secretRef:
+                name: cyrulik-secrets
+      restartPolicy: Always
+status: {}

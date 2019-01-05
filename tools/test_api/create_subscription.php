@@ -2,13 +2,13 @@
 
 require 'vendor/autoload.php';
 
-$accessToken = '';
+$accessToken = '5f0cb638-4185-4d36-9e3a-b79aa03e76ed';
 
 $client = new \GuzzleHttp\Client();
 
 $res = $client->request('POST', 'http://127.0.0.1:5002/subscription/', [
     'headers' => [
-        'Authorization' => 'Bearer d2acdfed-36e5-480d-8a5a-3e4b3adc4e5f'
+        'Authorization' => 'Bearer '.$accessToken
     ],
     'json' => [
         'plan' => '7885f9f3-1381-435a-89d7-a9de4e496a3e',
@@ -23,7 +23,7 @@ dump($response);
 
 $res = $client->request('POST', 'http://127.0.0.1:5002/subscription/', [
     'headers' => [
-        'Authorization' => 'Bearer d2acdfed-36e5-480d-8a5a-3e4b3adc4e5f'
+        'Authorization' => 'Bearer '.$accessToken
     ],
     'json' => [
         'plan' => '7885f9f3-1381-435a-89d7-a9de4e496a3e',
@@ -41,7 +41,7 @@ dump($response);
 
 $res = $client->request('GET', 'http://127.0.0.1:5002/subscription/admin/', [
     'headers' => [
-        'Authorization' => 'Bearer d2acdfed-36e5-480d-8a5a-3e4b3adc4e5f'
+        'Authorization' => 'Bearer '.$accessToken
     ],
 ]);
 
