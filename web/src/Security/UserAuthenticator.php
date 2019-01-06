@@ -12,9 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
@@ -22,27 +22,17 @@ final class UserAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;
 
-    /**
-     * @var PasswordEncoder
-     */
+    /** @var PasswordEncoder */
     private $passwordEncoder;
 
-    /**
-     * @var UserProvider
-     */
+    /** @var UserProvider */
     private $userProvider;
 
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface */
     private $router;
 
     /**
      * UserAuthenticator constructor.
-     *
-     * @param PasswordEncoder $passwordEncoder
-     * @param UserProvider $userProvider
-     * @param RouterInterface $router
      */
     public function __construct(
         PasswordEncoder $passwordEncoder,
@@ -54,21 +44,11 @@ final class UserAuthenticator extends AbstractFormLoginAuthenticator
         $this->router = $router;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return bool
-     */
     public function supports(Request $request): bool
     {
         return 'sign_in' === $request->attributes->get('_route') && $request->isMethod('POST');
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     public function getCredentials(Request $request): array
     {
         $userData = $request->get('sign_in', []);
@@ -86,18 +66,10 @@ final class UserAuthenticator extends AbstractFormLoginAuthenticator
         return $credentials;
     }
 
-
-    /**
-     * @param mixed $credentials
-     * @param UserProviderInterface $userProvider
-     *
-     * @return UserInterface
-     */
     public function getUser($credentials, UserProviderInterface $userProvider): UserInterface
     {
         return $this->userProvider->loadUserByUsernameAndPassword($credentials['email'], $credentials['password']);
     }
-
 
     /**
      * Return the URL to the login page.
@@ -118,8 +90,6 @@ final class UserAuthenticator extends AbstractFormLoginAuthenticator
      *
      * The *credentials* are the return value from getCredentials()
      *
-     * @param mixed $credentials
-     * @param UserInterface $user
      *
      * @return bool
      *
@@ -140,8 +110,6 @@ final class UserAuthenticator extends AbstractFormLoginAuthenticator
      * If you return null, the current request will continue, and the user
      * will be authenticated. This makes sense, for example, with an API.
      *
-     * @param Request $request
-     * @param TokenInterface $token
      * @param string $providerKey The provider (i.e. firewall) key
      *
      * @return Response|null

@@ -13,10 +13,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class SignInType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('login', EmailType::class, [

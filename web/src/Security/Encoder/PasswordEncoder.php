@@ -18,7 +18,7 @@ final class PasswordEncoder extends BasePasswordEncoder
      */
     public function encodePassword($raw, $salt): string
     {
-        return \password_hash($raw, PASSWORD_BCRYPT);
+        return \password_hash($raw, \PASSWORD_BCRYPT);
     }
 
     /**

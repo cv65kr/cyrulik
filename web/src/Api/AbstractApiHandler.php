@@ -10,20 +10,14 @@ use Psr\Log\LoggerInterface;
 
 abstract class AbstractApiHandler
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $url;
 
-    /**
-     * @var LoggerInterface
-     */
+    /** @var LoggerInterface */
     protected $logger;
 
     /**
      * AbstractApiHandler constructor.
-     *
-     * @param LoggerInterface $logger
      */
     public function __construct(LoggerInterface $logger)
     {
@@ -35,22 +29,11 @@ abstract class AbstractApiHandler
         $this->logger = $logger;
     }
 
-    /**
-     * @param string $path
-     *
-     * @return string
-     */
     protected function prepareUrl(string $path): string
     {
         return \sprintf('%s%s', $this->url, $path);
     }
 
-    /**
-     * @param string $clientId
-     * @param string $clientSecret
-     *
-     * @return GenericProvider
-     */
     protected function getClient(string $clientId, string $clientSecret): GenericProvider
     {
         return new GenericProvider(

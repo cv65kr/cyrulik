@@ -11,21 +11,14 @@ use Symfony\Component\Security\Core\Security;
 
 final class UserAccessTokenListener
 {
-    /**
-     * @var Security
-     */
+    /** @var Security */
     private $security;
 
-    /**
-     * @var SignInHandler
-     */
+    /** @var SignInHandler */
     private $signInHandler;
 
     /**
      * UserAccessTokenListener constructor.
-     *
-     * @param Security $security
-     * @param SignInHandler $signInHandler
      */
     public function __construct(Security $security, SignInHandler $signInHandler)
     {
@@ -33,9 +26,6 @@ final class UserAccessTokenListener
         $this->signInHandler = $signInHandler;
     }
 
-    /**
-     * @param GetResponseEvent $event
-     */
     public function onKernelRequest(GetResponseEvent $event): void
     {
         /** @var UserModel $user */

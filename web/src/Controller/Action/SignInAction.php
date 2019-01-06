@@ -17,33 +17,20 @@ use Twig_Environment;
 
 final class SignInAction
 {
-    /**
-     * @var Twig_Environment
-     */
+    /** @var Twig_Environment */
     private $environment;
 
-    /**
-     * @var FormFactoryInterface
-     */
+    /** @var FormFactoryInterface */
     private $formFactory;
 
-    /**
-     * @var RegisterAccountHandler
-     */
+    /** @var RegisterAccountHandler */
     private $registerAccountHandler;
 
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface */
     private $router;
 
     /**
      * SignUpAction constructor.
-     *
-     * @param Twig_Environment $environment
-     * @param FormFactoryInterface $formFactory
-     * @param RegisterAccountHandler $registerAccountHandler
-     * @param RouterInterface $router
      */
     public function __construct(
         Twig_Environment $environment,
@@ -58,11 +45,6 @@ final class SignInAction
     }
 
     /**
-     * @param Request $request
-     * @param AuthenticationUtils $authenticationUtils
-     *
-     * @return Response
-     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -76,6 +58,7 @@ final class SignInAction
         $error = $authenticationUtils->getLastAuthenticationError();
         if (false === empty($error)) {
             $request->getSession()->getFlashBag()->add('danger', 'Bad credentials, try again.');
+
             return new RedirectResponse(
                 $this->router->generate('sign_in')
             );

@@ -15,10 +15,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class SignUpType extends AbstractType
 {
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('login', EmailType::class, [
@@ -41,7 +37,7 @@ final class SignUpType extends AbstractType
         ]);
 
         $builder->add('password', RepeatedType::class, [
-            'first_options'  => ['label' => 'Password'],
+            'first_options' => ['label' => 'Password'],
             'second_options' => ['label' => 'Repeat Password'],
             'type' => PasswordType::class,
             'invalid_message' => 'The password fields must match.',

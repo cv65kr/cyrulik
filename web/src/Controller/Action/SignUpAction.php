@@ -16,33 +16,20 @@ use Twig_Environment;
 
 final class SignUpAction
 {
-    /**
-     * @var Twig_Environment
-     */
+    /** @var Twig_Environment */
     private $environment;
 
-    /**
-     * @var FormFactoryInterface
-     */
+    /** @var FormFactoryInterface */
     private $formFactory;
 
-    /**
-     * @var RegisterAccountHandler
-     */
+    /** @var RegisterAccountHandler */
     private $registerAccountHandler;
 
-    /**
-     * @var RouterInterface
-     */
+    /** @var RouterInterface */
     private $router;
 
     /**
      * SignUpAction constructor.
-     *
-     * @param Twig_Environment $environment
-     * @param FormFactoryInterface $formFactory
-     * @param RegisterAccountHandler $registerAccountHandler
-     * @param RouterInterface $router
      */
     public function __construct(
         Twig_Environment $environment,
@@ -57,10 +44,6 @@ final class SignUpAction
     }
 
     /**
-     * @param Request $request
-     *
-     * @return Response
-     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

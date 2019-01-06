@@ -11,69 +11,38 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 final class UserModel implements UserInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $username;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $password;
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     private $plainPassword;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $firstname;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $lastname;
 
-    /**
-     * @var DateTimeInterface|null
-     */
+    /** @var DateTimeInterface|null */
     private $createdAt;
 
-    /**
-     * @var DateTimeInterface|null
-     */
+    /** @var DateTimeInterface|null */
     private $updatedAt;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     private $roles;
 
-    /**
-     * @var AccessTokenInterface|null
-     */
+    /** @var AccessTokenInterface|null */
     private $accessToken;
 
     /**
      * UserModel constructor.
-     *
-     * @param string $id
-     * @param string $username
-     * @param string $password
-     * @param string $firstname
-     * @param string $lastname
-     * @param DateTimeInterface|null $createdAt
-     * @param DateTimeInterface|null $updatedAt
-     * @param array $roles
-     * @param AccessTokenInterface|null $accessToken
-     * @param string|null $plainPassword
      */
     private function __construct(
         string $id,
@@ -100,8 +69,6 @@ final class UserModel implements UserInterface
     }
 
     /**
-     * @param array $data
-     *
      * @return UserModel
      *
      * @throws \Exception
@@ -130,161 +97,101 @@ final class UserModel implements UserInterface
         );
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @param string $id
-     */
     public function setId(string $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return string
-     */
     public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @param string $username
-     */
     public function setUsername(string $username): void
     {
         $this->username = $username;
     }
 
-    /**
-     * @return string
-     */
     public function getPassword(): string
     {
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     */
     public function setPassword(string $password): void
     {
         $this->password = $password;
     }
 
-    /**
-     * @return string|null
-     */
     public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
 
-    /**
-     * @param string|null $plainPassword
-     */
     public function setPlainPassword(?string $plainPassword): void
     {
         $this->plainPassword = $plainPassword;
     }
 
-    /**
-     * @return string
-     */
     public function getFirstname(): string
     {
         return $this->firstname;
     }
 
-    /**
-     * @param string $firstname
-     */
     public function setFirstname(string $firstname): void
     {
         $this->firstname = $firstname;
     }
 
-    /**
-     * @return string
-     */
     public function getLastname(): string
     {
         return $this->lastname;
     }
 
-    /**
-     * @param string $lastname
-     */
     public function setLastname(string $lastname): void
     {
         $this->lastname = $lastname;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getCreatedAt(): ?DateTimeInterface
     {
         return $this->createdAt;
     }
 
-    /**
-     * @param DateTimeInterface|null $createdAt
-     */
     public function setCreatedAt(?DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
     }
 
-    /**
-     * @return DateTimeInterface|null
-     */
     public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
 
-    /**
-     * @param DateTimeInterface|null $updatedAt
-     */
     public function setUpdatedAt(?DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }
 
-    /**
-     * @return array
-     */
     public function getRoles(): array
     {
         return $this->roles;
     }
 
-    /**
-     * @param array $roles
-     */
     public function setRoles(array $roles): void
     {
         $this->roles = $roles;
     }
 
-    /**
-     * @return AccessTokenInterface|null
-     */
     public function getAccessToken(): ?AccessTokenInterface
     {
         return $this->accessToken;
     }
 
-    /**
-     * @param AccessTokenInterface|null $accessToken
-     */
     public function setAccessToken(?AccessTokenInterface $accessToken): void
     {
         $this->accessToken = $accessToken;

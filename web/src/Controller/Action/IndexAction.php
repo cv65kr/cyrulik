@@ -9,15 +9,11 @@ use Twig_Environment;
 
 final class IndexAction
 {
-    /**
-     * @var Twig_Environment
-     */
+    /** @var Twig_Environment */
     private $environment;
 
     /**
      * IndexAction constructor.
-     *
-     * @param Twig_Environment $environment
      */
     public function __construct(Twig_Environment $environment)
     {

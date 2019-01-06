@@ -14,9 +14,6 @@ use League\OAuth2\Client\Token\AccessTokenInterface;
 final class SignInHandler extends AbstractApiHandler
 {
     /**
-     * @param string $email
-     * @param string $password
-     *
      * @return UserModel
      */
     public function findUser(string $email, string $password): ?UserModel
@@ -36,9 +33,9 @@ final class SignInHandler extends AbstractApiHandler
                 throw new \Exception('Invalid request');
             }
 
-            $response = \json_decode((string)$response->getBody(), true);
+            $response = \json_decode((string) $response->getBody(), true);
             $response = $response['userAuthentication']['principal'];
-            $response['roles'] = \array_map(function($role) {
+            $response['roles'] = \array_map(function ($role) {
                 return (string) $role['authority'];
             }, $response['authorities']);
 
@@ -48,7 +45,6 @@ final class SignInHandler extends AbstractApiHandler
 
             return $userModel;
         } catch (Exception | GuzzleException $e) {
-
             $this->logger->error('ERROR', [
                 'message' => $e->getMessage(),
             ]);
@@ -57,11 +53,6 @@ final class SignInHandler extends AbstractApiHandler
         }
     }
 
-    /**
-     * @param UserModel $model
-     *
-     * @return AccessTokenInterface|null
-     */
     public function refreshToken(UserModel $model): ?AccessTokenInterface
     {
         $accessToken = $model->getAccessToken();
@@ -77,7 +68,7 @@ final class SignInHandler extends AbstractApiHandler
             $clientProvider = $this->getClient('web', \getenv('AUTH_WEB'));
 
             return $clientProvider->getAccessToken('refresh_token', [
-                'refresh_token' => $accessToken->getRefreshToken()
+                'refresh_token' => $accessToken->getRefreshToken(),
             ]);
         } catch (Exception $e) {
             $this->logger->error('ERROR', [
@@ -89,11 +80,6 @@ final class SignInHandler extends AbstractApiHandler
     }
 
     /**
-     * @param string $email
-     * @param string $password
-     *
-     * @return AccessTokenInterface
-     *
      * @throws \League\OAuth2\Client\Provider\Exception\IdentityProviderException
      */
     public function getToken(string $email, string $password): AccessTokenInterface

@@ -12,11 +12,6 @@ use GuzzleHttp\RequestOptions;
 
 final class RegisterAccountHandler extends AbstractApiHandler
 {
-    /**
-     * @param SignUpModel $model
-     *
-     * @return bool
-     */
     public function create(SignUpModel $model): bool
     {
         try {
@@ -28,7 +23,6 @@ final class RegisterAccountHandler extends AbstractApiHandler
 
             return $this->createAccountRequest($model, $uiToken);
         } catch (Exception | GuzzleException $e) {
-
             $this->logger->error('ERROR', [
                 'message' => $e->getMessage(),
             ]);
@@ -38,11 +32,6 @@ final class RegisterAccountHandler extends AbstractApiHandler
     }
 
     /**
-     * @param SignUpModel $model
-     * @param string $token
-     *
-     * @return bool
-     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function createAccountRequest(SignUpModel $model, string $token): bool
@@ -58,7 +47,7 @@ final class RegisterAccountHandler extends AbstractApiHandler
                 'password' => $model->getPassword(),
                 'firstName' => $model->getFirstname(),
                 'lastName' => $model->getLastname(),
-            ]
+            ],
         ]);
 
         return $response->getStatusCode() === 200;

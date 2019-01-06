@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Security\User;
 
-use App\Model\UserModel as User;
 use App\Api\SignInHandler as UserFinder;
+use App\Model\UserModel as User;
 use Symfony\Component\Intl\Exception\NotImplementedException;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -14,15 +14,11 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 final class UserProvider implements UserProviderInterface
 {
-    /**
-     * @var UserFinder
-     */
+    /** @var UserFinder */
     private $userFinder;
 
     /**
      * UserProvider constructor.
-     *
-     * @param UserFinder $userFinder
      */
     public function __construct(UserFinder $userFinder)
     {
@@ -43,20 +39,13 @@ final class UserProvider implements UserProviderInterface
      */
     public function loadUserByUsername($username)
     {
-        throw new NotImplementedException("");
+        throw new NotImplementedException('');
     }
 
-    /**
-     * @param string $username
-     * @param string $password
-     *
-     * @return UserInterface
-     */
     public function loadUserByUsernameAndPassword(string $username, string $password): UserInterface
     {
         return $this->fetchUser($username, $password);
     }
-
 
     /**
      * Refreshes the user.
@@ -65,11 +54,6 @@ final class UserProvider implements UserProviderInterface
      * totally reloaded (e.g. from the database), or if the UserInterface
      * object can just be merged into some internal array of users / identity
      * map.
-     *
-     * @param UserInterface $user
-     *
-     * @return UserInterface
-     *
      */
     public function refreshUser(UserInterface $user): UserInterface
     {
@@ -89,20 +73,12 @@ final class UserProvider implements UserProviderInterface
      * Whether this provider supports the given user class.
      *
      * @param string $class
-     *
-     * @return bool
      */
     public function supportsClass($class): bool
     {
         return User::class === $class;
     }
 
-    /**
-     * @param string $username
-     * @param string $password
-     *
-     * @return UserInterface
-     */
     private function fetchUser(string $username, string $password): UserInterface
     {
         $user = $this->userFinder->findUser($username, $password);
