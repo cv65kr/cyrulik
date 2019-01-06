@@ -17,6 +17,16 @@ final class SignUpModel
     private $password;
 
     /**
+     * @var null|string
+     */
+    private $firstname;
+
+    /**
+     * @var null|string
+     */
+    private $lastname;
+
+    /**
      * @return string|null
      */
     public function getLogin(): ?string
@@ -46,5 +56,37 @@ final class SignUpModel
     public function setPassword(?string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param string|null $firstname
+     */
+    public function setFirstname(?string $firstname): void
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string|null $lastname
+     */
+    public function setLastname(?string $lastname): void
+    {
+        $this->lastname = $lastname;
     }
 }
