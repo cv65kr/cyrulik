@@ -190,3 +190,17 @@ services:
       - .docker.env
     networks:
       - cyrulik
+
+  web:
+    build:
+      context: ./web
+      args:
+        env: "${APP_ENV}"
+    volumes:
+      - ./web:/var/www
+    ports:
+      - "${CONFIG_WEB_PORT}:80"
+    env_file:
+      - .docker.env
+    networks:
+      - cyrulik

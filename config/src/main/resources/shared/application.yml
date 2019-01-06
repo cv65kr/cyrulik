@@ -27,7 +27,7 @@ spring:
   kafka:
     bootstrap-servers: ${CONFIG_SERVICE_HOST_KAFKA}:${CONFIG_SERVICE_PORT_KAFKA}
   profiles:
-    active: ${APP_ENV}
+    active: ${APP_PROFILE}
 
 security:
   oauth2:
