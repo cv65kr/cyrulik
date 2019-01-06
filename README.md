@@ -18,7 +18,7 @@ https://www.draw.io/
 
 ### Endpoints 
 
-Web - http://127.0.0.1
+Web - http://127.0.0.1/
 
 Eureka - http://127.0.0.1:8761/
 
