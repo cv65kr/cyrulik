@@ -2,3 +2,5 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - "Form/bulma_0_3_x_layout.html.twig"
