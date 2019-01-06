@@ -1,3 +1,14 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+    path: /
+    controller: App\Controller\Action\IndexAction
+    methods: [GET]
+
+healthcheck:
+    path: /healthcheck
+    controller: App\Controller\Action\HealthcheckAction
+    methods: [GET]
+
+sign_up:
+    path: /sign-up
+    controller: App\Controller\Action\SignUpAction
+    methods: [GET, POST]

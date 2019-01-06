@@ -2,6 +2,8 @@
 
 Skeleton for modern SASS (Software as a Service) application. Based on Spring, uses microservices architecture.
 
+![web ui](tools/docs/ui.png)
+
 ## Stack
 
 Spring, Docker, Ribbon, Zuul, Turbine, Eureka, Zipkin, Kafka, Redis, Hystrix, Cassandra, Zookeeper.
@@ -10,7 +12,7 @@ Spring, Docker, Ribbon, Zuul, Turbine, Eureka, Zipkin, Kafka, Redis, Hystrix, Ca
 
 I know diagram is really bad, but my skill in this matter is really low :)
 
-![ Infrastructure services](tools/docs/diagram.png)
+![Infrastructure services](tools/docs/diagram.png)
 
 https://www.draw.io/
 

@@ -3,25 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} :: Cyrulik</title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+              integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous"/>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&amp;subset=latin-ext"
+              rel="stylesheet">
 
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
     {% block extra_stylesheets %}{% endblock %}
 </head>
 <body>
-    <div class="container">
-        <div class="container-padding-tb">
-            {% block body %}{% endblock %}
+<section class="hero is-info is-medium is-bold">
+    <div class="hero-head">
+        <nav class="navbar">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item has-text-weight-semibold" href="{{ path('index') }}">
+                        Cyrulik
+                    </a>
+                    <span class="navbar-burger burger" data-target="navbarMenu">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                </div>
+                <div id="navbarMenu" class="navbar-menu">
+                    <div class="navbar-end">
+                        <div class="tabs is-right">
+                            <ul>
+                                <li class="is-active"><a href="{{ path('index') }}">Home</a></li>
+                                <li><a href="{{ path('index') }}#pricing">Pricing</a></li>
+                                <li><a href="">Sign in</a></li>
+                            </ul>
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined"
+                                   href="{{ path('sign_up') }}">
+                                    <span title="Hello from the other side">Sign up</span>
+                                </a>
+                            </span>
+                            <span class="navbar-item">
+                                <a class="button is-white is-outlined" rel="noopener" target="_blank"
+                                   href="https://github.com/cv65kr/cyrulik">
+                                            <span class="icon"><i class="fa fa-github" aria-hidden="true"></i></span>
+                                    <span title="Hello from the other side">View Source</span>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h1 class="title">
+                Cyrulik
+            </h1>
+            <h2 class="subtitle">
+                Skeleton for modern SASS (Software as a Service) application.<br>Based on Spring, uses microservices architecture.
+            </h2>
         </div>
     </div>
-
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
-    {% block extra_javascripts %}{% endblock %}
+</section>
+<div class="box cta">
+    <p class="has-text-centered">
+        <span class="tag is-primary">New</span> Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+        ut aliquip ex ea commodo consequat.
+    </p>
+</div>
+<section class="container">
+    {% block body %}{% endblock %}
+</section>
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <div class="level">
+                <div class="control level-item  has-text-centered">
+                    <a href="https://github.com/dansup/bulma-templates" target="_blank" rel="noopener">
+                        <div class="tags has-addons">
+                            <span class="tag is-dark">Bulma Templates</span>
+                            <span class="tag is-info">MIT license</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="control level-item  has-text-centered">
+                    <a href="https://github.com/cv65kr/cyrulik" target="_blank" rel="noopener">
+                        <div class="tags has-addons">
+                            <span class="tag is-dark">Cyrulik</span>
+                            <span class="tag is-info">MIT license</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+{% block extra_javascripts %}{% endblock %}
 </body>
 </html>
