@@ -1,24 +1,41 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        cyrulik_user:
+            id: App\Security\User\UserProvider
+    encoders:
+        App\Model\User:
+            id: App\Security\Encoder\PasswordEncoder
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        cyrulik_panel:
+            pattern: ^/
             anonymous: true
-
-            # activate different ways to authenticate
-
-            # http_basic: true
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
+            context: user_panel
+            form_login:
+                login_path: sign_in
+                check_path: sign_in
+                failure_path: sign_in
+                default_target_path: index
+                use_forward: false
+                use_referer: true
+            remember_me:
+                secret: '%env(APP_SECRET)%'
+                name: APP_REMEMBER_ME
+                lifetime: 31536000
+                remember_me_parameter: _remember_me
+            logout:
+                path: security_logout
+                target: index
+            guard:
+                authenticators:
+                    - App\Security\UserAuthenticator
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/sign-in, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/sign-up, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/healthcheck, roles: IS_AUTHENTICATED_ANONYMOUSLY }

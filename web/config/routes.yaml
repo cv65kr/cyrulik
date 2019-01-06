@@ -12,3 +12,11 @@ sign_up:
     path: /sign-up
     controller: App\Controller\Action\SignUpAction
     methods: [GET, POST]
+
+sign_in:
+    path: /sign-in
+    controller: App\Controller\Action\SignInAction
+    methods: [GET, POST]
+
+security_logout:
+    path: /logout

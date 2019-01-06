@@ -35,14 +35,21 @@
                             <ul>
                                 <li class="is-active"><a href="{{ path('index') }}">Home</a></li>
                                 <li><a href="{{ path('index') }}#pricing">Pricing</a></li>
-                                <li><a href="">Sign in</a></li>
+                                {% if app.user %}
+                                    <li><a href="#dashboard-todo">Dashboard</a></li>
+                                    <li><a href="{{ path('security_logout') }}">Logout</a></li>
+                                {% else %}
+                                <li><a href="{{ path('sign_in') }}">Sign in</a></li>
+                                {% endif %}
                             </ul>
+                            {% if app.user == false %}
                             <span class="navbar-item">
                                 <a class="button is-white is-outlined"
                                    href="{{ path('sign_up') }}">
                                     <span title="Hello from the other side">Sign up</span>
                                 </a>
                             </span>
+                            {% endif %}
                             <span class="navbar-item">
                                 <a class="button is-white is-outlined" rel="noopener" target="_blank"
                                    href="https://github.com/cv65kr/cyrulik">

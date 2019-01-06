@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sign in{% endblock %}
+
+{% block body %}
+    <div id="sign-in" class="has-margin-bottom-30">
+
+        <div class="intro">
+            <h2 class="title">Sign in</h2>
+            <p class="subtitle">
+                Go inside our world
+            </p>
+        </div>
+
+        {% include 'Partials/flash_messages.html.twig' %}
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <button class="button is-info" type="submit">Sign in</button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

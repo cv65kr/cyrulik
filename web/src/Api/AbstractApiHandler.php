@@ -22,6 +22,8 @@ abstract class AbstractApiHandler
 
     /**
      * AbstractApiHandler constructor.
+     *
+     * @param LoggerInterface $logger
      */
     public function __construct(LoggerInterface $logger)
     {
