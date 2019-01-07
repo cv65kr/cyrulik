@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    '%env(CONFIG_SERVICE_HOST_REDIS)%': ''
+    '%env(int:CONFIG_SERVICE_PORT_REDIS)%': ''
 
 services:
     # default configuration for services in *this* file
@@ -33,3 +35,15 @@ services:
     App\Twig\PriceExtension:
         tags:
             - { name: twig.extension }
+
+    Redis:
+        class: Redis
+        calls:
+            - method: connect
+              arguments:
+                - '%env(CONFIG_SERVICE_HOST_REDIS)%'
+                - '%env(int:CONFIG_SERVICE_PORT_REDIS)%'
+
+    Symfony\Component\HttpFoundation\Session\Storage\Handler\RedisSessionHandler:
+        arguments:
+            - '@Redis'

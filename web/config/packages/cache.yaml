@@ -8,8 +8,8 @@ framework:
         # Other options include:
 
         # Redis
-        #app: cache.adapter.redis
-        #default_redis_provider: redis://localhost
+        app: cache.adapter.redis
+        default_redis_provider: 'redis://%env(CONFIG_SERVICE_HOST_REDIS)%:%env(int:CONFIG_SERVICE_PORT_REDIS)%'
 
         # APCu (not recommended with heavy random-write workloads as memory fragmentation can cause perf issues)
         #app: cache.adapter.apcu
