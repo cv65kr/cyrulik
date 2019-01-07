@@ -32,7 +32,7 @@ final class PlanHandler extends UiHandler
                 throw new \Exception('Invalid request');
             }
 
-            $response = \json_decode((string)$response->getBody(), true);
+            $response = \json_decode((string) $response->getBody(), true);
 
             $collection = new PlanCollection();
             foreach ($response as $item) {

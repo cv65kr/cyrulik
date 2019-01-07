@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Action;
+namespace App\Controller\Action\Pricing;
 
 use App\Service\PlanService;
 use Doctrine\Common\Collections\Criteria;
@@ -11,21 +11,14 @@ use Twig_Environment;
 
 final class PricingAction
 {
-    /**
-     * @var PlanService
-     */
+    /** @var PlanService */
     private $planService;
 
-    /**
-     * @var Twig_Environment
-     */
+    /** @var Twig_Environment */
     private $twigEnvironment;
 
     /**
      * PricingAction constructor.
-     *
-     * @param PlanService $planService
-     * @param Twig_Environment $twigEnvironment
      */
     public function __construct(PlanService $planService, Twig_Environment $twigEnvironment)
     {
@@ -47,7 +40,7 @@ final class PricingAction
             $this->twigEnvironment->render(
                 'Partials/pricing.html.twig',
                 [
-                    'plans' => $plans
+                    'plans' => $plans,
                 ]
             )
         );

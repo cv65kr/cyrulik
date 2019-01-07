@@ -10,22 +10,22 @@ healthcheck:
 
 sign_up:
     path: /sign-up
-    controller: App\Controller\Action\SignUpAction
+    controller: App\Controller\Action\Account\SignUpAction
     methods: [GET, POST]
 
 sign_in:
     path: /sign-in
-    controller: App\Controller\Action\SignInAction
+    controller: App\Controller\Action\Account\SignInAction
     methods: [GET, POST]
 
 pricing:
     path: /partials/pricing
-    controller: App\Controller\Action\PricingAction
+    controller: App\Controller\Action\Pricing\PricingAction
     methods: [GET]
 
 pricing_order:
     path: /pricing/{id}
-    controller: App\Controller\Action\PricingOrderAction
+    controller: App\Controller\Action\Pricing\PricingOrderAction
     methods: [GET]
 
 security_logout:

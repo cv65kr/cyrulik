@@ -13,27 +13,17 @@ final class PlanService
 {
     private const CACHE_PLANS_KEY = 'cache.plans';
 
-    /**
-     * @var PlanHandler
-     */
+    /** @var PlanHandler */
     private $planHandler;
 
-    /**
-     * @var CacheItemPoolInterface
-     */
+    /** @var CacheItemPoolInterface */
     private $cacheItemPool;
 
-    /**
-     * @var LoggerInterface
-     */
+    /** @var LoggerInterface */
     private $logger;
 
     /**
      * PlanService constructor.
-     *
-     * @param PlanHandler $planHandler
-     * @param CacheItemPoolInterface $cacheItemPool
-     * @param LoggerInterface $logger
      */
     public function __construct(PlanHandler $planHandler, CacheItemPoolInterface $cacheItemPool, LoggerInterface $logger)
     {

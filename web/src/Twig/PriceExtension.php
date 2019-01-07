@@ -10,15 +10,11 @@ use Twig_SimpleFilter;
 
 final class PriceExtension extends Twig_Extension
 {
-    /**
-     * @var PriceHelper
-     */
+    /** @var PriceHelper */
     private $priceHelper;
 
     /**
      * PriceExtension constructor.
-     *
-     * @param PriceHelper $priceHelper
      */
     public function __construct(PriceHelper $priceHelper)
     {

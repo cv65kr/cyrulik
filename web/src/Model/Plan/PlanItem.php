@@ -20,11 +20,6 @@ final class PlanItem
 
     /**
      * PlanItem constructor.
-     *
-     * @param string $id
-     * @param string $name
-     * @param int $pricePerMonth
-     * @param int $pricePerYear
      */
     private function __construct(
         string $id,
@@ -40,7 +35,7 @@ final class PlanItem
 
     public static function deserialize(array $data): self
     {
-        return new self (
+        return new self(
             (string) $data['id'],
             (string) $data['name'],
             (int) $data['pricePerMonth'],
@@ -48,65 +43,41 @@ final class PlanItem
         );
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @param string $id
-     */
     public function setId(string $id): void
     {
         $this->id = $id;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return int
-     */
     public function getPricePerMonth(): int
     {
         return $this->pricePerMonth;
     }
 
-    /**
-     * @param int $pricePerMonth
-     */
     public function setPricePerMonth(int $pricePerMonth): void
     {
         $this->pricePerMonth = $pricePerMonth;
     }
 
-    /**
-     * @return int
-     */
     public function getPricePerYear(): int
     {
         return $this->pricePerYear;
     }
 
-    /**
-     * @param int $pricePerYear
-     */
     public function setPricePerYear(int $pricePerYear): void
     {
         $this->pricePerYear = $pricePerYear;

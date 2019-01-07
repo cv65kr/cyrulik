@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\Action;
+namespace App\Controller\Action\Account;
 
 use App\Api\RegisterAccountHandler;
 use App\Form\Type\SignUpType;
