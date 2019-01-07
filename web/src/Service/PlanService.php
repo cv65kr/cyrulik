@@ -38,6 +38,10 @@ final class PlanService
             $plansCache = $this->cacheItemPool->getItem(self::CACHE_PLANS_KEY);
             if (!$plansCache->isHit()) {
                 $plans = $this->planHandler->getPlans();
+                if (null === $plans) {
+                    return new PlanCollection();
+                }
+
                 $plansCache->set($plans);
                 $this->cacheItemPool->save($plansCache);
             } else {
