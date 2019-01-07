@@ -4,6 +4,6 @@
 
 {% block body %}
 
-    {% include 'Partials/pricing.html.twig' %}
+    {{ render(controller('App\\Controller\\Action\\PricingAction')) }}
 
 {% endblock %}

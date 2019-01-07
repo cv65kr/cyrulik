@@ -18,5 +18,15 @@ sign_in:
     controller: App\Controller\Action\SignInAction
     methods: [GET, POST]
 
+pricing:
+    path: /partials/pricing
+    controller: App\Controller\Action\PricingAction
+    methods: [GET]
+
+pricing_order:
+    path: /pricing/{id}
+    controller: App\Controller\Action\PricingOrderAction
+    methods: [GET]
+
 security_logout:
     path: /logout

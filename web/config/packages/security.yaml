@@ -39,3 +39,4 @@ security:
         - { path: ^/sign-in, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/sign-up, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/healthcheck, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: "^/pricing/(.*)", role: IS_AUTHENTICATED_FULLY }

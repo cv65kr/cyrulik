@@ -65,7 +65,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("web")
                 .scopes("ui")
                 .secret(getSecret("AUTH_WEB"))
-                .authorizedGrantTypes("refresh_token", "password")
+                .authorizedGrantTypes("refresh_token", "password", "client_credentials")
                 .authorities("ROLE_CLIENT")
                 .and()
 

@@ -11,7 +11,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 
-final class SignInHandler extends AbstractApiHandler
+final class SignInHandler extends UiHandler
 {
     /**
      * @return UserModel
@@ -65,7 +65,7 @@ final class SignInHandler extends AbstractApiHandler
         }
 
         try {
-            $clientProvider = $this->getClient('web', \getenv('AUTH_WEB'));
+            $clientProvider = $this->getUiClientProvider();
 
             return $clientProvider->getAccessToken('refresh_token', [
                 'refresh_token' => $accessToken->getRefreshToken(),
@@ -84,7 +84,7 @@ final class SignInHandler extends AbstractApiHandler
      */
     public function getToken(string $email, string $password): AccessTokenInterface
     {
-        $clientProvider = $this->getClient('web', \getenv('AUTH_WEB'));
+        $clientProvider = $this->getUiClientProvider();
 
         return $clientProvider->getAccessToken('password', [
             'username' => $email,
