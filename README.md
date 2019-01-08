@@ -2,7 +2,9 @@
 
 Skeleton for modern SASS (Software as a Service) application. Based on Spring, uses microservices architecture.
 
-![web ui](tools/docs/ui.png)
+![homepage](tools/docs/ui1.png)
+
+![payment](tools/docs/ui2.png)
 
 ## Stack
 
@@ -67,14 +69,15 @@ Example content:
 
 ### Tools
 
-In folder tools, You will find useful tools to testing app, or her deployment.
+In folder tools, You will find useful tools, sample database queries to testing app, or her deployment.
 
 ## Todo (Random order)
 
 - [x] Docker for services - https://github.com/spotify/docker-maven-plugin
 - [ ] Frontend sample app - https://bulma.io/
 - [ ] Admin control panel
-- [ ] TDD
+- [ ] Tests
+- [ ] Kubernetes
 - [ ] CI
 - [ ] Kafka consumer (eg. notifications sent)
 - [ ] Register account using social media
