@@ -72,7 +72,8 @@ In folder tools, You will find useful tools to testing app, or her deployment.
 ## Todo (Random order)
 
 - [x] Docker for services - https://github.com/spotify/docker-maven-plugin
-- [ ] Frontend sample app with admin control panel - https://bulma.io/
+- [ ] Frontend sample app - https://bulma.io/
+- [ ] Admin control panel
 - [ ] TDD
 - [ ] CI
 - [ ] Kafka consumer (eg. notifications sent)
