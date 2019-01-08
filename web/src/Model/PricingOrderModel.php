@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-final class PricingOrder
+final class PricingOrderModel
 {
-    private $choices = [
+    private static $choices = [
         0 => 'Monthly payment',
         1 => 'Yearly payment',
     ];
@@ -33,8 +33,8 @@ final class PricingOrder
     /**
      * @return array
      */
-    public function getChoices(): array
+    public static function getChoices(): array
     {
-        return $this->choices;
+        return self::$choices;
     }
 }

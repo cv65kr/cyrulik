@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Payment{% endblock %}
+
+{% block body %}
+    <div id="sign-up" class="has-margin-bottom-30">
+
+        <div class="intro">
+            <h2 class="title">Payment</h2>
+            <p class="subtitle">
+                Monthly or yearly payment
+            </p>
+        </div>
+
+
+        <div class="columns">
+            <div class="column is-one-third">
+
+                <div class="pricing-table">
+                        <div class="pricing-plan is-active">
+                            <div class="plan-header">{{ plan.getName() }}</div>
+                            <div class="plan-price"><span class="plan-price-amount"><span class="plan-price-currency">$</span>{{ plan.getPricePerMonth() | price }}</span>/month
+                            </div>
+                            <div class="plan-items">
+                                <div class="plan-item">Option 1</div>
+                                <div class="plan-item">Option 2</div>
+                                <div class="plan-item">Option 3</div>
+                                <div class="plan-item">{{ plan.getPricePerYear() > 0 ? 'Price per year: ' ~ (plan.getPricePerYear() | price)~'$' : '-'  }}</div>
+                            </div>
+                            <div class="plan-footer">
+                                <a href="{{ path('pricing_order', {'id': plan.getId()}) }}" class="button is-fullwidth" disabled="disabled">Choosed</a>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+            <div class="column">
+                {% include 'Partials/flash_messages.html.twig' %}
+
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+
+                <br>
+                <button class="button is-info" type="submit">Order</button>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -26,7 +26,7 @@ pricing:
 pricing_order:
     path: /pricing/{id}
     controller: App\Controller\Action\Pricing\PricingOrderAction
-    methods: [GET]
+    methods: [GET, POST]
 
 security_logout:
     path: /logout
